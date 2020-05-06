@@ -49,6 +49,7 @@ class LinkController extends Controller
 
         $base = env('STR_BASE');
         $tiny = substr(str_shuffle($base . strtoupper($base)), 4, env('LINK_LENGTH'));
+
         $node = Link::where('tiny', $tiny)->get();
 
         while (TRUE) {
@@ -72,6 +73,7 @@ class LinkController extends Controller
             $user->link()->attach($link->id);
         }
         $request->session()->put(['status' => 1, 'tiny' => $tiny]);
+
         return back();
     }
 

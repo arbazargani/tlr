@@ -15,8 +15,8 @@
                 <p>نوع عضویت: <span class="uk-label uk-label-warning">{{ Auth::user()->membership }}</span></p>
                 <hr>
                 <div class="uk-container uk-text-center">
-                    <a href="edit-profile" class="uk-button uk-button-primary">ویرایش پروفایل</a>
-                    <a href="edit-profile" class="uk-button uk-button-secondary">ثبت لینک</a>
+                    <a href="edit-profile" class="uk-button uk-button-primary uk-disabled">ویرایش پروفایل</a>
+                    <a href="edit-profile" class="uk-button uk-button-secondary uk-disabled">ثبت لینک</a>
                 </div>
             </div>
         </div>

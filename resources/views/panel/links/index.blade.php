@@ -22,7 +22,7 @@
                     @foreach($links->links as $link)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $link->url }}</td>
+                            <td><span title="{{ $link->url }}">{{  substr(urldecode($link->url), 0, 100) }}</span></td>
                             <td><a href="{{ route('Link > Redirect', $link->tiny) }}">{{ $link->tiny }}</a></td>
                             <td>{{ $link->created_at }}</td>
                             <td>
