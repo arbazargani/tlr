@@ -22,7 +22,7 @@
         background-color: whitesmoke;
     }
     .body {
-        background-image: url("{{ asset('assets/public/images/dark-bg-006.jpg') }}");
+        background-image: url("{{ asset('assets/public/images/dark-bg-004.jpg') }}");
         background-position: center;
         background-size: cover;
         background-color: rgba(0, 0, 0, 0.40);

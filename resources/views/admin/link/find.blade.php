@@ -7,7 +7,7 @@
 @section('content')
 <div class="content-padder content-background">
     <br>
-    <div class="uk-container uk-background-default uk-padding-large" style="margin: 10px !important;">
+    <div class="uk-container uk-background-default uk-padding-large">
         <div class="uk-container uk-margin-small" uk-margin>
             <form method="get">
             <!-- @csrf -->

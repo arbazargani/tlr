@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- UIkit CSS -->
-<link rel="stylesheet" href="{{ asset('assets/admin/css/uikit-rtl.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/admin/css/uikit.min.css') }}" />
 
 <!-- Custom CSS -->
 <link rel="stylesheet" href="{{ asset('assets/admin/css/notyf.min.css') }}" />
@@ -25,5 +25,7 @@
 <!-- Chart Js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 
+<!-- Clipboard -->
+<script src="{{ asset('assets/public/js/clipboard.min.js') }}"></script>
 
 

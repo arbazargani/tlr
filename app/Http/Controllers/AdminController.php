@@ -4,13 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Link;
 use App\Session;
+use App\User;
 use App\Charts\LinkChart;
 use App\Charts\UserChart;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+
+    public function DetectDomainTld ($domain) {
+
+        // detect last slashes
+        $dotPos = (strpos($domain, 'www.') == false) ? strpos($domain, '.') : strpos($domain, '.', strpos($domain, '.')) ;
+
+        // return $dotPos;
+        $lastSlashPos = strpos($domain, '/', $dotPos);
+
+        //removed slashes and another routes after tld --> [arbazargani.ir]
+        $step = ($lastSlashPos == false) ? $domain : substr($domain, 0, $lastSlashPos);
+
+        //detect exact tld
+        $tld = strrev(substr(strrev($step), 0, strpos(strrev($step), '.')));
+
+        return $tld;
+    }
+
     public function Index()
     {
         $yesterdayLinks = Link::where('registered_at', date('Y-m-d', strtotime('-1 day')))->get();
@@ -49,6 +69,7 @@ class AdminController extends Controller
         $links = Link::latest()->paginate(2);
         return view('admin.link.manage', compact('links'));
     }
+
     public function FindLinks(Request $request)
     {
         if(isset($_GET['link']) && !is_null($_GET['link'])) {
@@ -82,6 +103,7 @@ class AdminController extends Controller
         $tiny->save();
         return back();
     }
+
     public function DeactivateLink($id)
     {
         $tiny = Link::find($id);
@@ -89,9 +111,65 @@ class AdminController extends Controller
         $tiny->save();
         return back();
     }
+
     public function DeleteLink($id)
     {
         $tiny = Link::find($id)->delete();
         return back();
     }
+
+    public function AddLink() {
+        return view('admin.link.add');
+    }
+
+    public function SubmitLink(Request $request)
+    {
+        $request->session()->put('status', '0');
+        $request->validate([
+            'url' =>'required|min:4'
+        ]);
+
+        if (preg_match('/^(((H|h)(T|t)(T|t)(P|p))?(S|s)?(:\/\/))?(www.|WWW.)?([A-Za-z0-9-]+)\.(\w+)/', $request['url'])) {
+            if (substr($request['url'], 0, 4) !== 'http') {
+                $request['url'] = 'http://' . $request['url'];
+            }
+        } else {
+            $request->session()->put(['status' => 0, 'message' => 'Incorrect link structure.']);
+            return redirect(route('Admin > Links > Add'));
+        }
+
+        $link = new Link();
+        $link->url = $request['url'];
+        $link->tld = $this->DetectDomainTld($request['url']);
+
+        $base = env('STR_BASE');
+        $tiny = substr(str_shuffle($base . strtoupper($base)), 4, env('LINK_LENGTH'));
+
+        $node = Link::whereRaw('LENGTH(tiny) = ' . env('LINK_LENGTH'))->where('tiny', $tiny)->get();
+
+        while (TRUE) {
+            if (!count($node)) {
+                break;
+            } else {
+                $tiny = substr(str_shuffle($base . strtoupper($base)), 4, env('LINK_LENGTH'));
+                $node = Link::where('tiny', $tiny)->get();
+            }
+        }
+
+        $link->registered_at = date('Y-m-d');
+        $link->tiny = $tiny;
+        $link->ip = $request->ip();
+        if(!Auth::check() || Auth::user()->membership == 'free') {
+            $link->deactivate = Carbon::now()->addMonths(1);
+        }
+        $link->save();
+        if (Auth::check()) {
+            $user = User::find(Auth::id());
+            $user->link()->attach($link->id);
+        }
+        $request->session()->put(['status' => 1, 'tiny' => $tiny]);
+
+        return back();
+    }
+
 }
