@@ -32,9 +32,9 @@ class LinkController extends Controller
         $request->session()->put('status', '0');
         $request->validate([
             'url' =>'required|min:4',
-            'android-url' => 'min:4',
-            'ios-url' => 'min:4',
-            'windows-url' => 'min:4',
+            'android-url' => 'nullable|min:4',
+            'ios-url' => 'nullable|min:4',
+            'windows-url' => 'nullable|min:4',
         ]);
 
         if (preg_match('/^(((H|h)(T|t)(T|t)(P|p))?(S|s)?(:\/\/))?(www.|WWW.)?([A-Za-z0-9-]+)\.(\w+)/', $request['url'])) {
@@ -50,16 +50,21 @@ class LinkController extends Controller
         $link->url = $request['url'];
         $link->tld = $this->DetectDomainTld($request['url']);
 
-        if( $request->has('android-url') || $request->has('ios-url') || $request->has('windows-url') ) {
-            $xtiny = ( $request->has('android-url') && !is_null($request['android-url']) ) ? $request['android-url'] : false;
-            $xtiny .= ( $request->has('ios-url') && !is_null($request['ios-url']) ) ? $request['ios-url'] : false;
-            $xtiny .= ( $request->has('windows-url') && !is_null($request['windows-url']) ) ? $request['windows-url'] : false;
+        $xtiny = [];
+        $xtiny ['android'] = ( $request->has('android-url') && !is_null($request['android-url']) ) ? $request['android-url'] : 'false';
+        $xtiny ['ios']     = ( $request->has('ios-url') && !is_null($request['ios-url']) ) ? $request['ios-url'] : 'false';
+        $xtiny ['windows'] = ( $request->has('windows-url') && !is_null($request['windows-url']) ) ? $request['windows-url'] : 'false';
+        
+        $link->type = ( $request->has('android-url') || $request->has('ios-url') || $request->has('windows-url') ) ? 'xtiny' :'single';
+        
+        if ( $request->has('android-url') || $request->has('ios-url') || $request->has('windows-url') ) {
+            $link->xtiny = $xtiny['android'] . '|||' . $xtiny['ios'] . '|||' . $xtiny['windows'];
         }
 
         $base = env('STR_BASE');
         $tiny = substr(str_shuffle($base . strtoupper($base)), 4, env('LINK_LENGTH'));
 
-        $node = Link::where('tiny', $tiny)->get();
+        $node = Link::whereRaw('LENGTH(tiny) =' . env('LINK_LENGTH'))->where('tiny', $tiny)->get();
 
         while (TRUE) {
             if (!count($node)) {
