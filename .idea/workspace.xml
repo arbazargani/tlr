@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b770da52-2c74-4057-b0b1-260c6c941182" name="Default Changelist" comment="" />
+    <list default="true" id="b770da52-2c74-4057-b0b1-260c6c941182" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TinyLinker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TinyLinker.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LinkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LinkController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SessionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SessionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_15_193804_create_links_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_15_193804_create_links_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/link/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/link/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/link/fetch.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/link/fetch.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/template-parts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/template-parts/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +46,9 @@
         <option value="CSS File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -133,9 +149,12 @@
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/vendor/sabre/cache" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/league/commonmark" />
+      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
     </include_path>
   </component>
   <component name="ProjectId" id="1UHwRwWX8rUSfq2dT9Z69KxRtaD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -144,7 +163,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Tiny" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/link" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -157,17 +176,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/panel" />
-      <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="$PROJECT_DIR$/resources/views/public" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\tiny-link\resources\views\admin\link" />
       <recent name="$PROJECT_DIR$/resources/views/panel/links" />
       <recent name="$PROJECT_DIR$/resources/views/panel" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/vendor/pagination" />
-      <recent name="$PROJECT_DIR$/resources/views/admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/panel" />
+      <recent name="$PROJECT_DIR$/resources/views" />
+      <recent name="$PROJECT_DIR$/resources/views/public" />
     </key>
   </component>
   <component name="RunManager">
@@ -220,6 +239,7 @@
       <workItem from="1580192187326" duration="23516000" />
       <workItem from="1580276407015" duration="27000" />
       <workItem from="1581953978139" duration="7595000" />
+      <workItem from="1589374169254" duration="9296000" />
     </task>
     <servers />
   </component>
@@ -227,42 +247,6 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="455" y="27" width="476" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1576929987516">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="455" y="27" width="476" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/39.27.1327.741@39.27.1327.741" timestamp="1576929987516" />
-    <state x="435" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1577869491639">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="435" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/39.27.1327.741@39.27.1327.741" timestamp="1577869491639" />
-    <state x="453" y="258" width="488" height="276" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1576437763111">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="453" y="258" width="488" height="276" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/39.27.1327.741@39.27.1327.741" timestamp="1576437763111" />
-    <state x="485" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1580276434114">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="485" y="154" width="424" height="484" key="FileChooserDialogImpl/39.27.1327.741@39.27.1327.741" timestamp="1580276434114" />
-    <state x="498" y="322" width="399" height="149" key="NewPhpFileDialog" timestamp="1577868092152">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="498" y="322" width="399" height="149" key="NewPhpFileDialog/39.27.1327.741@39.27.1327.741" timestamp="1577868092152" />
-    <state x="191" y="31" key="SettingsEditor" timestamp="1577868663941">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="191" y="31" key="SettingsEditor/39.27.1327.741@39.27.1327.741" timestamp="1577868663941" />
-    <state x="358" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1580276415020">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="358" y="225" key="com.intellij.ide.util.TipDialog/39.27.1327.741@39.27.1327.741" timestamp="1580276415020" />
-    <state x="356" y="27" width="683" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1578393408206">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="356" y="27" width="683" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/39.27.1327.741@39.27.1327.741" timestamp="1578393408206" />
-    <state x="139" y="125" width="1127" height="543" key="dock-window-1" timestamp="1576843503097">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="139" y="125" width="1127" height="543" key="dock-window-1/39.27.1327.741@39.27.1327.741" timestamp="1576843503097" />
     <state x="257" y="27" width="871" height="741" key="find.popup" timestamp="1581955108855">
       <screen x="39" y="27" width="1327" height="741" />
     </state>
@@ -271,14 +255,11 @@
       <screen x="39" y="27" width="1327" height="741" />
     </state>
     <state x="366" y="175" key="run.anything.popup/39.27.1327.741@39.27.1327.741" timestamp="1581961721886" />
-    <state x="365" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1581961228920">
-      <screen x="39" y="27" width="1327" height="741" />
+    <state x="1794" y="73" width="730" height="797" key="search.everywhere.popup" timestamp="1589379086002">
+      <screen x="1440" y="0" width="1440" height="870" />
     </state>
+    <state x="1794" y="73" width="730" height="797" key="search.everywhere.popup/0.0.1440.870/1440.0.1440.870@1440.0.1440.870" timestamp="1589379086002" />
     <state x="365" y="89" width="672" height="678" key="search.everywhere.popup/39.27.1327.741@39.27.1327.741" timestamp="1581961228920" />
-    <state x="427" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1576519245036">
-      <screen x="39" y="27" width="1327" height="741" />
-    </state>
-    <state x="427" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/39.27.1327.741@39.27.1327.741" timestamp="1576519245036" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

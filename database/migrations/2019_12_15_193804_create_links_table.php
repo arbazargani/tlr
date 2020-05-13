@@ -18,6 +18,8 @@ class CreateLinksTable extends Migration
             $table->string('url');
             $table->string('tld');
             $table->string('tiny');
+            $table->string('cross_tiny')->nullable();
+            $table->string('type')->default('single');
             $table->bigInteger('views')->default(0);
             $table->bigInteger('state')->default(1);
             $table->date('registered_at');

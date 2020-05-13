@@ -28,4 +28,7 @@
 <!-- Clipboard -->
 <script src="{{ asset('assets/public/js/clipboard.min.js') }}"></script>
 
+<!-- Ionicons -->
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
 

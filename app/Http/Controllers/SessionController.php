@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
-  public function GetUserIP()
+    public function GetUserIP()
   {
       // Get real visitor IP behind CloudFlare network
       if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
@@ -26,7 +26,8 @@ class SessionController extends Controller
       }
       return $ip;
    }
-   public function GetRealAgent()
+
+    public function GetRealAgent()
     {
       $user_agent = $_SERVER['HTTP_USER_AGENT'];
       $content_nav['name'] = 'Unknown';

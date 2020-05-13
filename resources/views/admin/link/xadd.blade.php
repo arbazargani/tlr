@@ -9,7 +9,7 @@
     <br>
     <div class="uk-container uk-background-default uk-padding-large">
         <div class="uk-container uk-margin-small" uk-margin>
-        <p>Add Single Tiny</p>
+        <p>Add <span class="uk-label uk-label-success">Cross</span> Tiny</p>
         @if (session()->has('status'))
             @if(session('status') == 0)
                 <div class="uk-alert-danger" uk-alert>
@@ -30,15 +30,45 @@
         @endif
         <form method="post" action="{{ route('Link > Submit') }}">
         @CSRF
-            <div class="uk-margin">
-                <input class="uk-input uk-form-width-large" type="text" placeholder="Insert main link" name="url" value="{{ @old('url') }}">
+            <div class="uk-margin" uk-grid>
+                <div class="uk-width-auto@m">
+                    <div class="uk-margin">
+                        <ion-icon name="star-outline"></ion-icon>
+                        <input class="uk-input uk-form-width-medium" type="text" placeholder="Master link" name="url" value="{{ @old('url') }}">
+                    </div>
+
+                    <div class="uk-margin">
+                        <ion-icon name="logo-android"></ion-icon>
+                        <input class="uk-input uk-form-width-medium" type="text" placeholder="ANDROID link" name="android-url" value="{{ @old('android-url') }}">
+                    </div>
+
+                    <div class="uk-margin">
+                        <ion-icon name="logo-apple"></ion-icon>
+                        <input class="uk-input uk-form-width-medium" type="text" placeholder="IOS link" name="ios-url" value="{{ @old('ios-url') }}">
+                    </div>
+
+                    <div class="uk-margin">
+                        <ion-icon name="logo-windows"></ion-icon>
+                        <input class="uk-input uk-form-width-medium" type="text" placeholder="WINDOWS PHONE link" name="windows-url" value="{{ @old('windows-url') }}">
+                    </div>
+                </div>
+                <div class="uk-width-expand@m">
+                    <ul class="uk-list uk-list-bullet">
+                        <li>Main link is required.</li>
+                        <li>X-Crosses are optional.</li>
+                        <li>Consider if the browser agent wont detected, user will redirect to the main destination.</li>
+                    </ul>
+                    <hr>
+                    <button class="uk-button uk-button-primary">Add</button>
+                </div>
+
+
                 @if(session('status') == 0)
                     <span class="uk-text-meta" style="color: white">{{ session('message') }}</span>
                     @php
                         session()->forget(['status', 'message']);
                     @endphp
                 @endif
-                <button class="uk-button uk-button-primary">Add</button>
             </div>
 
         </form>

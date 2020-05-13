@@ -118,8 +118,8 @@ class AdminController extends Controller
         return back();
     }
 
-    public function AddLink() {
-        return view('admin.link.add');
+    public function AddLink($multiple = null) {
+        return (is_null($multiple)) ? view('admin.link.add') : view('admin.link.xadd');
     }
 
     public function SubmitLink(Request $request)

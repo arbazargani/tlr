@@ -31,7 +31,10 @@ class LinkController extends Controller
     {
         $request->session()->put('status', '0');
         $request->validate([
-            'url' =>'required|min:4'
+            'url' =>'required|min:4',
+            'android-url' => 'min:4',
+            'ios-url' => 'min:4',
+            'windows-url' => 'min:4',
         ]);
 
         if (preg_match('/^(((H|h)(T|t)(T|t)(P|p))?(S|s)?(:\/\/))?(www.|WWW.)?([A-Za-z0-9-]+)\.(\w+)/', $request['url'])) {
@@ -40,12 +43,18 @@ class LinkController extends Controller
             }
         } else {
             $request->session()->put(['status' => 0, 'message' => 'Incorrect link structure.']);
-            return redirect(route('Index'));
+            return back();
         }
 
         $link = new Link();
         $link->url = $request['url'];
         $link->tld = $this->DetectDomainTld($request['url']);
+
+        if( $request->has('android-url') || $request->has('ios-url') || $request->has('windows-url') ) {
+            $xtiny = ( $request->has('android-url') && !is_null($request['android-url']) ) ? $request['android-url'] : false;
+            $xtiny .= ( $request->has('ios-url') && !is_null($request['ios-url']) ) ? $request['ios-url'] : false;
+            $xtiny .= ( $request->has('windows-url') && !is_null($request['windows-url']) ) ? $request['windows-url'] : false;
+        }
 
         $base = env('STR_BASE');
         $tiny = substr(str_shuffle($base . strtoupper($base)), 4, env('LINK_LENGTH'));
@@ -103,7 +112,7 @@ class LinkController extends Controller
                     * otherwise process to redirect will be done.
                     */
                     if(!is_null($tiny[0]->deactivate) && $tiny[0]->deactivate < date('Y-m-d H-i-s')) {
-                        
+
                         $tiny[0]->state = 0;
                         $tiny[0]->save();
 
