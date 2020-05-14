@@ -46,3 +46,8 @@ Route::get('/info/all', function () {
         ]
     ];
 });
+
+
+
+// helper routes
+Route::get('/user/agent', 'LinkController@ShowAllAbout');

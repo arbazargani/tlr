@@ -12,6 +12,7 @@
         "consoletvs/charts": "6.*",
         "cviebrock/eloquent-sluggable": "^6.0",
         "fideloper/proxy": "^4.0",
+        "hisorange/browser-detect": "^4.2",
         "ipinfo/ipinfo": "^1.1",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0"
