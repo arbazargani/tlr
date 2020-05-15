@@ -20,10 +20,7 @@ Route::prefix('c67x')->middleware('auth')->group(function () {
     Route::get('/home', 'AdminController@Index')->name('Admin');
     Route::get('/links', 'AdminController@FindLinks')->name('Admin > Links');
 
-
     Route::get('/links/add/{multiple?}', 'AdminController@AddLink')->name('Admin > Links > Add');
-
-
 
     Route::post('/links/activate/{id}', 'AdminController@ActivateLink')->name('Admin > Links > Activate');
     Route::post('/links/deactivate/{id}', 'AdminController@DeactivateLink')->name('Admin > Links > Deactivate');

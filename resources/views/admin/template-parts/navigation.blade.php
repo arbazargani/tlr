@@ -42,6 +42,8 @@
             Links
         </li>
         <li><a href="{{ route('Admin > Links') }}">Manage</a></li>
+        <li><a href="{{ route('Admin > Links > Add') }}">Add Tiny</a></li>
+        <li><a href="{{ route('Admin > Links > Add') }}/multiple">Add xTiny</a></li>
 
         <li class="uk-nav-header">
             Users

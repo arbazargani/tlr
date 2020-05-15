@@ -30,6 +30,17 @@ class LinkController extends Controller
         return $tld;
     }
 
+    public function ValidateLink($domain) {
+        if (preg_match('/^(((H|h)(T|t)(T|t)(P|p))?(S|s)?(:\/\/))?(www.|WWW.)?([A-Za-z0-9-]+)\.(\w+)/', $domain)) {
+            if (substr($domain, 0, 4) !== 'http') {
+                $domain = 'http://' . $domain;
+            }
+            return $domain;
+        } else {
+            return false;
+        }
+    }
+
     public function GetRealAgent() {
 		$user_agent = $_SERVER['HTTP_USER_AGENT'];
 		$content_nav['name'] = 'Unknown';
@@ -118,28 +129,62 @@ class LinkController extends Controller
             'windows-url' => 'nullable|min:4',
         ]);
 
-        if (preg_match('/^(((H|h)(T|t)(T|t)(P|p))?(S|s)?(:\/\/))?(www.|WWW.)?([A-Za-z0-9-]+)\.(\w+)/', $request['url'])) {
-            if (substr($request['url'], 0, 4) !== 'http') {
-                $request['url'] = 'http://' . $request['url'];
-            }
-        } else {
-            $request->session()->put(['status' => 0, 'message' => 'Incorrect link structure.']);
+        // if (preg_match('/^(((H|h)(T|t)(T|t)(P|p))?(S|s)?(:\/\/))?(www.|WWW.)?([A-Za-z0-9-]+)\.(\w+)/', $request['url'])) {
+        //     if (substr($request['url'], 0, 4) !== 'http') {
+        //         $request['url'] = 'http://' . $request['url'];
+        //     }
+        // } else {
+        //     $request->session()->put(['status' => 0, 'message' => 'Incorrect link structure.']);
+        //     return back();
+        // }
+
+
+        $url = $this->ValidateLink($request['url']);
+        if ($url == false) {
+            $request->session()->put(['status' => 0, 'message' => 'URL has incorrect structure.']);
             return back();
         }
+
+        $xtiny = [];
+        $xtiny['android'] = $android = 'false';
+        $xtiny['ios'] = $ios = 'false';
+        $xtiny['windows'] = $windows = 'false';
+        
+        if ($request->has('android-url') && !is_null($request['android-url'])) {
+            $android = $this->ValidateLink($request['android-url']);
+            if ($android == false) {
+                $request->session()->put(['status' => 0, 'message' => 'ANDROID-URL has incorrect structure.']);
+                return back();
+            }
+            $xtiny['android'] = $android;
+        }
+
+        if ($request->has('ios-url') && !is_null($request['ios-url'])) {
+            $ios = $this->ValidateLink($request['ios-url']);
+            if ($ios == false) {
+                $request->session()->put(['status' => 0, 'message' => 'IOS-URL has incorrect structure.']);
+                return back();
+            }
+            $xtiny['ios'] = $ios;
+        }
+
+        if ($request->has('windows-url') && !is_null($request['windows-url'])) {
+            $windows = $this->ValidateLink($request['windows-url']);
+            if ($windows == false) {
+                $request->session()->put(['status' => 0, 'message' => 'WINDOWS-URL has incorrect structure.']);
+                return back();
+            }
+            $xtiny ['windows'] = $windows;
+        }   
 
         $link = new Link();
         $link->url = $request['url'];
         $link->tld = $this->DetectDomainTld($request['url']);
 
-        $xtiny = [];
-        $xtiny ['android'] = ( $request->has('android-url') && !is_null($request['android-url']) ) ? $request['android-url'] : 'false';
-        $xtiny ['ios']     = ( $request->has('ios-url') && !is_null($request['ios-url']) ) ? $request['ios-url'] : 'false';
-        $xtiny ['windows'] = ( $request->has('windows-url') && !is_null($request['windows-url']) ) ? $request['windows-url'] : 'false';
-
         $link->type = ( $request->has('android-url') || $request->has('ios-url') || $request->has('windows-url') ) ? 'xtiny' :'single';
 
         if ( $request->has('android-url') || $request->has('ios-url') || $request->has('windows-url') ) {
-            $link->xtiny = $xtiny['android'] . '|||' . $xtiny['ios'] . '|||' . $xtiny['windows'];
+            $link->xtiny = $android . '|||' . $ios . '|||' . $windows;
         }
 
         $base = env('STR_BASE');
